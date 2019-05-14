@@ -1,0 +1,30 @@
+<mat-list role="list"
+          *ngIf="data$ | async as data; else spinner"
+          class="sidebar-list">
+  <ng-container *ngFor="let item of data">
+    <mat-list-item role="listitem"
+                   class="sidebar-list-item"
+                   (click)="handleClick(item)">
+      <mat-icon>edit</mat-icon>
+      {{ item.name }}
+      <img mat-card-avatar
+           *ngIf="item.avatarUrl"
+           [src]="item.avatarUrl"
+           class="sidebar-list-item-avatar">
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </ng-container>
+</mat-list>
+
+<button mat-button
+        class="sidebar-button"
+        (click)="handleButtonCLick()">
+  <mat-icon>add_box</mat-icon>
+  {{ buttonName$ | async }}
+</button>
+
+<ng-template #spinner>
+  <div class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

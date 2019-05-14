@@ -1,0 +1,87 @@
+:host {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  
+  .dictionary {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    &-header {
+      display: flex;
+      justify-content: space-between;
+
+      &-info {
+        display: flex;
+        align-items: center;
+      }
+
+      &-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-left: 20px;
+      }
+    }
+
+    &-content {
+      display: flex;
+      flex: 1;
+      border: 2px solid #f5f5f5;
+
+      .mat-divider {
+        border-color: #f5f5f5 !important;
+        border-width: 2px;
+      }
+
+      .available-words,
+      .dictionary-words {
+        flex: 1;
+
+        .mat-list-item {
+          justify-content: space-between;
+        }
+
+        .word {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 15px;
+        }
+      }
+
+      .dictionary-words {
+        .word-icon {
+          margin-right: 30px;
+          cursor: pointer;
+        }
+      }
+
+      .available-words {
+        .word-icon {
+          margin-left: 30px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .spinner {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .button-wrapper {
+    display: flex;
+    margin-top: 10px;
+    justify-content: flex-end;
+
+    button {
+      background-color: lightgreen;
+    } 
+  }
+}

@@ -1,0 +1,38 @@
+<mat-list role="list"
+          class="sidebar">
+    <mat-list-item role="listitem"
+                   class="sidebar-item"
+                   [routerLink]="['/user/dictionaries']">
+      <button mat-button class="sidebar-button">
+        <mat-icon>view_carousel</mat-icon>
+        Dictionaries
+      </button>
+    </mat-list-item>
+
+    <mat-list-item role="listitem"
+                   class="sidebar-item"
+                   [routerLink]="['/user/test/eng-rus']">
+      <button mat-button class="sidebar-button">
+        <mat-icon>star_rate</mat-icon>
+        Test: "Eng - Rus"
+      </button>
+    </mat-list-item>
+
+    <mat-list-item role="listitem"
+                   class="sidebar-item"
+                   [routerLink]="['/user/test/rus-eng']">
+      <button mat-button class="sidebar-button">
+        <mat-icon>stars</mat-icon>
+        Test: "Rus - Eng"
+      </button>
+    </mat-list-item>
+
+    <mat-list-item role="listitem"
+                   class="sidebar-item"
+                   [routerLink]="['/user/results']">
+      <button mat-button class="sidebar-button">
+        <mat-icon>history</mat-icon>
+        Test Results
+      </button>
+    </mat-list-item>
+</mat-list>

@@ -1,0 +1,60 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title> {{ data?.name || 'New User' }} </mat-card-title>
+    <mat-card-subtitle>Enter here</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="form-group" [formGroup]="userControl">
+    <mat-form-field appearance="outline">
+      <input matInput
+             placeholder="First Name"
+             formControlName="firstName">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <input matInput
+             placeholder="Last Name"
+             formControlName="lastName">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Select User Role</mat-label>
+      <mat-select formControlName="role">
+        <mat-option value="student">
+          Student
+        </mat-option>
+        <mat-option value="moderator">
+          Moderator
+        </mat-option>
+        <mat-option value="admin">
+          Admin
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="isStudent$ | async"
+                    appearance="outline">
+      <input matInput
+             type="number"
+             placeholder="Group Number"
+             formControlName="group">
+    </mat-form-field>
+
+    <mat-form-field *ngIf="!data?.isEditable"
+                    appearance="outline">
+      <input matInput
+             type="password"
+             placeholder="Password"
+             formControlName="password">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <input matInput
+             placeholder="Avatar URL"
+             formControlName="avatarUrl">
+    </mat-form-field>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="onCancel()">CANCEL</button>
+    <button mat-button (click)="onSave()">SAVE</button>
+  </mat-card-actions>
+</mat-card>

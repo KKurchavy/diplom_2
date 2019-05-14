@@ -1,0 +1,64 @@
+<mat-toolbar>
+  <mat-toolbar-row class="user-header">
+    <div class="user-header-info">
+      <button mat-icon-button (click)="sidebar.toggle()">
+        <mat-icon aria-label="menu">
+          menu
+        </mat-icon>
+      </button>
+      Test Results
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-drawer-container class="user-result">
+  <mat-drawer #sidebar opened mode="side">
+    <mat-list class="user-result-list">
+      <ng-container *ngFor="let test of tests$ | async; let i = index">
+        <mat-list-item role="listitem"
+                       class="user-result-list-item"
+                       (click)="onTestItemClick(test)">
+          <div class="user-result-list-item-number">№ {{ i + 1 }}</div>
+          <div class="user-result-list-item-date">{{ test.date | date : 'dd.MM.yy' }}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </ng-container>
+    </mat-list>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <ng-container *ngIf="result$ | async as result">
+      <div class="user-result-info">
+        Detailed result:
+        <div>Total words: {{ result?.correctWords.length + result?.incorrectWords.length }} </div>
+        <div>Correct words: {{ result?.correctWords.length }} </div>
+        <div>Incorrect words: {{ result?.incorrectWords.length }} </div>
+        <div>Result: {{ result?.result }}% </div>
+      </div>
+      <div *ngIf="result?.correctWords.length"
+           class="user-result-words-correct">
+        <mat-list>
+          <ng-container *ngFor="let word of result?.correctWords">
+            <mat-list-item role="listitem">
+              <div>{{ word.word }}</div>
+              <div>{{ word.translation }}</div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </ng-container>
+        </mat-list>
+      </div>
+      <div *ngIf="result?.correctWords.length"
+           class="user-result-words-incorrect">
+        <mat-list>
+          <ng-container *ngFor="let word of result?.incorrectWords">
+            <mat-list-item role="listitem">
+              <div>{{ word.word }}</div>
+              <div>{{ word.translation }}</div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </ng-container>
+        </mat-list>
+      </div>
+    </ng-container>
+  </mat-drawer-content>
+</mat-drawer-container>

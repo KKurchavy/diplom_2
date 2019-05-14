@@ -1,0 +1,99 @@
+<div class="user"
+     *ngIf="user$ | async as user; else spinner">
+  <mat-toolbar>
+    <mat-toolbar-row class="user-header">
+      <div class="user-header-info">
+        <button mat-icon-button
+                (click)="sidebar.toggle()">
+          <mat-icon aria-label="menu">
+            menu
+          </mat-icon>
+        </button>
+        <img mat-card-avatar
+             *ngIf="user.avatarUrl"
+             [src]="user.avatarUrl"
+             class="user-header-avatar">
+        {{ user.name }}
+      </div>
+  
+      <div class="user-actions">
+        <button mat-icon-button
+                class="sidebar-button"
+                (click)="onEdit(user)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button
+                class="sidebar-button"
+                (click)="onDelete(user)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  
+  <div class="user-content">
+    <div class="user-info">
+      <div>Role: {{ user?.role }} </div>
+      <div>Number of dictionaries: {{ user?.dictionaries?.length }} </div>
+      <div>Number of words learned: {{ user.learnedWords }} </div>
+      <div>Number of test: {{ user?.tests?.length }} </div>
+    </div>
+    <mat-drawer-container class="user-result">
+      <mat-drawer #sidebar mode="side">
+        <mat-list class="user-result-list">
+          <ng-container *ngFor="let test of user?.tests; let i = index">
+            <mat-list-item role="listitem"
+                           class="user-result-list-item"
+                           (click)="onTestItemClick(test)">
+              <div class="user-result-list-item-number">№ {{ i + 1 }}</div>
+              <div class="user-result-list-item-date">{{ test.date | date : 'dd.MM.yy' }}</div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </ng-container>
+        </mat-list>
+      </mat-drawer>
+  
+      <mat-drawer-content>
+        <ng-container *ngIf="result$ | async as result">
+          <div class="user-result-info">
+            Detailed result: 
+            <div>Total words: {{ result?.correctWords.length + result?.incorrectWords.length }} </div>
+            <div>Correct words: {{ result?.correctWords.length }} </div>
+            <div>Incorrect words: {{ result?.incorrectWords.length }} </div>
+            <div>Result: {{ result?.result }}% </div>
+          </div>
+          <div *ngIf="result?.correctWords.length"
+               class="user-result-words-correct">
+            <mat-list>
+              <ng-container *ngFor="let word of result?.correctWords">
+                <mat-list-item role="listitem">
+                  <div>{{ word.word }}</div>
+                  <div>{{ word.translation }}</div>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+              </ng-container>
+            </mat-list>
+          </div>
+          <div *ngIf="result?.correctWords.length"
+               class="user-result-words-incorrect">
+            <mat-list>
+              <ng-container *ngFor="let word of result?.incorrectWords">
+                <mat-list-item role="listitem">
+                  <div>{{ word.word }}</div>
+                  <div>{{ word.translation }}</div>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+              </ng-container>
+            </mat-list>
+          </div>
+        </ng-container>
+      </mat-drawer-content>
+    </mat-drawer-container>
+  </div>
+</div>
+
+<ng-template #spinner>
+  <div class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

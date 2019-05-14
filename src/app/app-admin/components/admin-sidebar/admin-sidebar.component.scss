@@ -1,0 +1,51 @@
+:host {
+  width: 20vw;
+  display: flex;
+  padding: 0px 10px;
+
+  ::ng-deep {
+    .mat-list-item-content {
+      justify-content: space-between;
+    }
+    
+    .mat-list-item-content:hover {
+      background-color: rgba(0, 0, 0, 0.22);
+    }
+  }
+
+  .sidebar{
+    &-list {
+      width: 20vw;
+
+      &-item {
+        cursor: pointer;
+
+        &-avatar {
+          width: 40px;
+          height: 40px;
+          border: 1px solid;
+          border-radius: 50%;
+        }
+      }
+    }
+
+    &-button {
+      bottom: 10px;
+      padding: 0;
+      width: 18vw;
+      margin: 0px 1vw;
+      position: absolute;
+    }
+  }
+
+  .mat-icon {
+    margin-right: 10px;
+  }
+
+  .spinner {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,30 @@
+:host {
+  ::ng-deep {
+    .mat-drawer-inner-container {
+      display: flex;
+    }
+  }
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 70px);
+
+    &-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-content {
+      display: flex;
+      padding: 20px;
+      flex-direction: column;
+      background-color: #e0e2e6;
+    }
+  }
+}
+
+::ng-deep .mat-dialog-container {
+  padding: 0 !important;
+}

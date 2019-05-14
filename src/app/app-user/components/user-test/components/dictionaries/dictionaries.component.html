@@ -1,0 +1,52 @@
+<div class="dictionaries-added">
+  <mat-grid-list cols="4"
+                 rowHeight="200px"
+                 *ngIf="addedDictionaries$ | async as addedDictionaries; else spinner">
+    <mat-grid-tile *ngFor="let dictionary of addedDictionaries"
+                   [rowspan]="1"
+                   [colspan]="2"
+                   >
+      <div class="dictionaries-item"
+           [style.background]="getBackground(dictionary?.avatarUrl)">
+      </div>
+      <p class="dictionaries-item-text">{{ dictionary?.name }}</p>
+      <button mat-icon-button
+              (click)="onDelete(dictionary._id)"
+              class="dictionaries-item-button button-delete">
+          <mat-icon>highlight_off</mat-icon>
+      </button>
+    </mat-grid-tile>1
+  </mat-grid-list>
+</div>
+
+<div class="dictionaries-available">
+  <mat-grid-list cols="4"
+                 rowHeight="200px"
+                 *ngIf="availableDictionaries$ | async as availableDictionaries; else spinner">
+    <mat-grid-tile *ngFor="let dictionary of availableDictionaries"
+                   [rowspan]="1"
+                   [colspan]="2">
+      <div class="dictionaries-item" 
+           [style.background]="getBackground(dictionary?.avatarUrl)">
+      </div>
+      <p class="dictionaries-item-text">{{ dictionary?.name }}</p>
+      <button mat-icon-button
+              (click)="onAdd(dictionary)"
+              class="dictionaries-item-button button-add">
+        <mat-icon>add_circle</mat-icon>
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+<div class="button-wrapper">
+  <button mat-button (click)="onNextClick()">
+    Next
+  </button>
+</div>
+
+<ng-template #spinner>
+  <div class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

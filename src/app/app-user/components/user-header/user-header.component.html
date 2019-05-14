@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button
+            (click)="onMenuClick()">
+      <mat-icon aria-label="menu">
+        menu
+      </mat-icon>
+    </button>
+
+    <span class="example-spacer"></span>
+    
+    <div class="user-info" *ngIf="currentUser$ | async as user">
+      <div class="user-info__name"> {{ user.firstName || user.name }} {{ user.lastName }} </div>
+      <button mat-icon-button
+              class="user-info__icon"
+              [matMenuTriggerFor]="menu">
+        <mat-icon aria-label="account settings">
+          person_outline
+        </mat-icon>
+      </button>
+    </div>
+
+    <mat-menu #menu="matMenu" xPosition="after">
+        <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>

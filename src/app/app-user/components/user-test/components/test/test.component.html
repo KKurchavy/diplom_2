@@ -1,0 +1,54 @@
+<div class="test-container">
+  <div class="test-container-wrapper" *ngIf="!isComplete(); else beforeComplete">
+    <div class="hint">
+      <h1>{{ hint }}</h1>
+    </div>
+    <h2>Drag here</h2>
+    <div class="example-container">
+      <div
+        cdkDropList
+        #resultList="cdkDropList"
+        class="example-list"
+        [cdkDropListData]="result"
+        cdkDropListOrientation="horizontal"
+        [cdkDropListConnectedTo]="[lettersList]"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of result" cdkDrag>{{item}}</div>
+      </div>
+    </div>
+    
+    <div class="example-container">
+      <div
+        cdkDropList
+        class="example-list"
+        #lettersList="cdkDropList"
+        [cdkDropListData]="letters"
+        cdkDropListOrientation="horizontal"
+        [cdkDropListConnectedTo]="[resultList]"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of letters" cdkDrag>{{item}}</div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #beforeComplete>
+    <div class="before-complete">
+      Click the complete to continue
+    </div>
+  </ng-template>
+</div>
+
+<div class="button-wrapper">
+  <button mat-button
+          *ngIf="!isComplete(); else complete"
+          (click)="onNextClick()">
+    Next
+  </button>
+
+  <ng-template #complete>
+    <button mat-button
+            (click)="onComplete()">
+      Complete
+    </button>
+  </ng-template>
+</div>

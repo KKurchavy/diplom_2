@@ -1,0 +1,48 @@
+:host {
+  padding: 10px;
+  overflow: auto;
+  border-radius: 3px;
+  background-color: white;
+  height: calc(100vh - 124px);
+
+  .words {
+    flex: 1;
+    border: 2px solid #f5f5f5;
+
+    &-header {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .mat-divider {
+      border-color: #f5f5f5 !important;
+      border-width: 2px;
+    }
+
+    .word-list {
+      .word {
+        flex: 1;
+        display: flex;
+        justify-content: space-around;
+      }
+
+      &-item {
+        &-value {
+          border-right: 2px solid #f5f5f5;
+        }
+
+        &-icon {
+          margin-right: 30px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .spinner {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
