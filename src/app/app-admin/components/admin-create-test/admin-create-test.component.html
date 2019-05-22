@@ -1,0 +1,12 @@
+<mat-tab-group [selectedIndex]="index$ | async">
+  <mat-tab label="Dictionaries"
+           class="dictionaries">
+    <app-admin-test-dictionaries (next)="next()">
+    </app-admin-test-dictionaries>
+  </mat-tab>
+  <mat-tab label="Words"
+           class="words">
+    <app-admin-test-words (goBack)="previous()" (create)="createTest($event)">
+    </app-admin-test-words>
+  </mat-tab>
+</mat-tab-group>

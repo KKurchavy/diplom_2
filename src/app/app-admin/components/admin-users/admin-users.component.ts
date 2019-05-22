@@ -12,6 +12,7 @@ import { selectSidebarSelectedItem, selectSidebarButtonClick } from '../../../st
 import { MatDialog } from '@angular/material';
 import { UserModalComponent } from '../../../shared/modals/user-modal/user-modal.component';
 import { ConfirmDialogComponent } from '../../../shared/modals/confirm-dialog/confirm-dialog.component';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-admin-users',
@@ -27,6 +28,8 @@ export class AdminUsersComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<any>,
     private dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute,
   ) { }
 
   public ngOnInit(): void {
@@ -100,5 +103,14 @@ export class AdminUsersComponent implements OnInit, OnDestroy {
 
   public onTestItemClick({ _id }: any): void {
     this.store.dispatch(new LoadTestResult(_id));
+  }
+
+  public assignTest({ _id }: any): void {
+    this.router.navigate(['../create-test'], {
+      relativeTo: this.route,
+      queryParams: {
+        executorId: _id
+      },
+    });
   }
 }

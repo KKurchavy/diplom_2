@@ -1,0 +1,78 @@
+<div class="tests-wrapper">
+  <mat-toolbar>
+    <mat-toolbar-row class="user-header">
+      <div class="user-header-info">
+        <button mat-icon-button
+                (click)="sidebar.toggle()">
+          <mat-icon aria-label="menu">
+            menu
+          </mat-icon>
+        </button>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-drawer-container class="tests-drawer">
+    <mat-drawer #sidebar mode="side">
+      <mat-list class="tests-list">
+        <ng-container *ngFor="let test of (tests$ | async); let i = index">
+          <mat-list-item role="listitem"
+                         class="tests-list-item"
+                         (click)="onItemClick(test)">
+            <div class="tests-list-item-number">№ {{ i + 1 }}</div>
+            <div class="tests-list-item-number"> {{ test.executor.name }} </div>
+            <div class="tests-list-item-date">{{ test.dateCreated | date : 'dd.MM.yy' }}</div>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </ng-container>
+      </mat-list>
+    </mat-drawer>
+
+    <mat-drawer-content>
+      <ng-container *ngIf="selectedTest$ | async as test">
+          <div class="tests-executor-info">
+            <img mat-card-avatar
+                 *ngIf="test.executor.avatarUrl"
+                 [src]="test.executor.avatarUrl"
+                 class="tests-executor-avatar">
+            <div class="tests-details">
+              <div><b>Assigned to: </b> {{ test.executor.name }} </div>
+              <div><b>Resolved: </b> {{ test.resolved }} </div>
+              <div><b>Appointment date: </b> {{ test.dateCreated | date : 'dd.MM.yy hh:mm' }} </div>
+            </div>
+          </div>
+        <div *ngIf="test.resolved" class="tests-result-info">
+          Detailed result: 
+          <div><b>Total words: </b>{{ test?.result?.correctWords.length + test?.result?.incorrectWords.length }} </div>
+          <div><b>Correct words: </b>{{ test?.result?.correctWords.length }} </div>
+          <div><b>Incorrect words: </b>{{ test?.result?.incorrectWords.length }} </div>
+          <div><b>Result: </b>{{ test?.result?.result }}% </div>
+        </div>
+        <div *ngIf="test?.result?.correctWords.length"
+             class="tests-result-words-correct">
+          <mat-list>
+            <ng-container *ngFor="let word of test?.result?.correctWords">
+              <mat-list-item role="listitem">
+                <div>{{ word.word }}</div>
+                <div>{{ word.translation }}</div>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+            </ng-container>
+          </mat-list>
+        </div>
+        <div *ngIf="test?.result?.correctWords.length"
+             class="tests-result-words-incorrect">
+          <mat-list>
+            <ng-container *ngFor="let word of test?.result?.incorrectWords">
+              <mat-list-item role="listitem">
+                <div>{{ word.word }}</div>
+                <div>{{ word.translation }}</div>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+            </ng-container>
+          </mat-list>
+        </div>
+      </ng-container>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>

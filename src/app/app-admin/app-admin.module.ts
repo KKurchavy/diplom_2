@@ -10,8 +10,12 @@ import { AdminRoutingModule } from './admin.routing';
 import { RouterModule } from '@angular/router';
 import {
   MatSidenavModule, MatToolbarModule, MatIconModule, MatButtonModule,
-  MatListModule, MatDividerModule, MatProgressSpinnerModule, MatMenuModule
+  MatListModule, MatDividerModule, MatProgressSpinnerModule, MatMenuModule, MatTabsModule
 } from '@angular/material';
+import { AdminCreateTestComponent } from './components/admin-create-test/admin-create-test.component';
+import { AdminCreateTestModule } from './components/admin-create-test/admin-create-test.module';
+import { StoreModule } from '@ngrx/store';
+import { testReducer } from '../store/reducers/test/test.reducer';
 
 @NgModule({
   declarations: [
@@ -21,6 +25,7 @@ import {
     AdminWordsComponent,
     AdminUsersComponent,
     AdminHeaderComponent,
+    AdminCreateTestComponent,
   ],
   imports: [
     CommonModule,
@@ -33,7 +38,10 @@ import {
     MatListModule,
     MatDividerModule,
     MatMenuModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTabsModule,
+    AdminCreateTestModule,
+    StoreModule.forFeature('test', testReducer),
   ]
 })
 export class AppAdminModule { }

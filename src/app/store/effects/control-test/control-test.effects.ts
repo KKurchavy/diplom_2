@@ -12,7 +12,13 @@ import {
   CreateControlTestSuccess,
   CreateControlTestFailed,
   UpdateControlTest,
-  UpdateControlTestSuccess} from '../../actions/control-test/control-test.actions';
+  UpdateControlTestSuccess,
+  GetControlTestById,
+  GetControlTestByIdFailed,
+  GetControlTests,
+  GetControlTestByIdSuccess,
+  GetControlTestsSuccess,
+  GetControlTestsFailed} from '../../actions/control-test/control-test.actions';
 import { exhaustMap, map, catchError, switchMap } from 'rxjs/operators';
 import { ControlTestService } from '../../../services/control-test.service';
 
@@ -26,6 +32,30 @@ export class ControlTestEffects {
         return this.controlTestService.getControlTestsByUserId(payload).pipe(
             map(({ body }) => new GetControlTestsByUserIdSuccess(body)),
             catchError(() => of(new GetControlTestsByUserIdFailed()))
+          );
+      })
+    );
+
+  @Effect()
+  public getTestsById$ = this.actions$
+    .pipe(
+      ofType<GetControlTestById>(ControlTestActionTypes.GetControlTestById),
+      exhaustMap(({ payload }) => {
+        return this.controlTestService.GetControlTestById(payload).pipe(
+            map(({ body }) => new GetControlTestByIdSuccess(body)),
+            catchError(() => of(new GetControlTestByIdFailed()))
+          );
+      })
+    );
+
+  @Effect()
+  public getTests$ = this.actions$
+    .pipe(
+      ofType<GetControlTests>(ControlTestActionTypes.GetControlTests),
+      exhaustMap(() => {
+        return this.controlTestService.getControlTests().pipe(
+            map(({ body }) => new GetControlTestsSuccess(body)),
+            catchError(() => of(new GetControlTestsFailed()))
           );
       })
     );
@@ -48,7 +78,7 @@ export class ControlTestEffects {
       ofType<CreateControlTest>(ControlTestActionTypes.CreateControlTest),
       exhaustMap(({ payload }) => {
         return this.controlTestService.createControlTest(payload).pipe(
-            switchMap(() => [new CreateControlTestSuccess(), new GetControlTestsByUserId(payload.executor)]),
+            switchMap(() => [new CreateControlTestSuccess(), new GetControlTests()]),
             catchError(() => of(new CreateControlTestFailed()))
           );
       })

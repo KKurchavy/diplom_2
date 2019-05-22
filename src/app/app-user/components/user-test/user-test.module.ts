@@ -37,6 +37,11 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     UserTestRoutingModule,
     DragDropModule,
   ],
-  exports: [TestWrapperComponent]
+  exports: [
+    DictionariesComponent,
+    WordsComponent,
+    TestComponent,
+    TestWrapperComponent,
+  ]
 })
 export class UserTestModule { }

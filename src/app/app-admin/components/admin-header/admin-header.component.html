@@ -12,6 +12,7 @@
 
     <span class="example-spacer"></span>
     
+    <button mat-button [routerLink]="['/admin/tests']">Tests</button>
     <button mat-button [routerLink]="['/admin/users']">Users</button>
     <div class="user-info" *ngIf="currentUser$ | async as user">
       <div class="user-info__name"> {{ user.firstName || user.name }} {{ user.lastName }} </div>

@@ -1,0 +1,54 @@
+<div class="dictionary">
+  <div class="dictionary-content">
+    <mat-list class="dictionary-words">
+      <ng-container *ngFor="let word of words$ | async">
+        <mat-list-item role="listitem">
+          <mat-icon class="word-icon" (click)="deleteWord(word._id)">
+            remove_circle
+          </mat-icon>
+
+          <div class="word">
+            <div class="word-value">{{ word.word }}</div>
+            <div class="word-translation">{{ word.translation }}</div>
+          </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </ng-container>
+    </mat-list>
+
+    <mat-divider [vertical]="true"></mat-divider>
+
+    <mat-list class="available-words">
+      <ng-container *ngFor="let word of (availableWords$ | async)">
+        <mat-list-item role="listitem">
+          <div class="word">
+            <div class="word-value">{{ word.word }}</div>
+            <div class="word-translation">{{ word.translation }}</div>
+          </div>
+
+          <mat-icon class="word-icon" (click)="addWord(word)">
+            add_circle
+          </mat-icon>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </ng-container>
+    </mat-list>
+  </div>
+</div>
+
+
+<div class="button-wrapper">
+  <button mat-button (click)="onPrevious()">
+    Previous
+  </button>
+
+  <button mat-button (click)="onCreate()">
+    Create
+  </button>
+</div>
+
+<ng-template #spinner>
+  <div class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

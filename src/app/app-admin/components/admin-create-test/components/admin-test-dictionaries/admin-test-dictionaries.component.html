@@ -1,6 +1,6 @@
 <div class="dictionaries-added">
-  <mat-grid-list cols="8"
-                 rowHeight="100px"
+  <mat-grid-list cols="4"
+                 rowHeight="200px"
                  *ngIf="addedDictionaries$ | async as addedDictionaries; else spinner">
     <mat-grid-tile *ngFor="let dictionary of addedDictionaries"
                    [rowspan]="1"
@@ -11,7 +11,7 @@
       </div>
       <p class="dictionaries-item-text">{{ dictionary?.name }}</p>
       <button mat-icon-button
-              (click)="onDelete(dictionary)"
+              (click)="onDelete(dictionary._id)"
               class="dictionaries-item-button button-delete">
           <mat-icon>highlight_off</mat-icon>
       </button>
@@ -20,8 +20,8 @@
 </div>
 
 <div class="dictionaries-available">
-  <mat-grid-list cols="8"
-                 rowHeight="100px"
+  <mat-grid-list cols="4"
+                 rowHeight="200px"
                  *ngIf="availableDictionaries$ | async as availableDictionaries; else spinner">
     <mat-grid-tile *ngFor="let dictionary of availableDictionaries"
                    [rowspan]="1"
@@ -37,6 +37,12 @@
       </button>
     </mat-grid-tile>
   </mat-grid-list>
+</div>
+
+<div class="button-wrapper">
+  <button mat-button (click)="onNextClick()">
+    Next
+  </button>
 </div>
 
 <ng-template #spinner>

@@ -33,10 +33,18 @@
   
   <div class="user-content">
     <div class="user-info">
-      <div>Role: {{ user?.role }} </div>
-      <div>Number of dictionaries: {{ user?.dictionaries?.length }} </div>
-      <div>Number of words learned: {{ user.learnedWords }} </div>
-      <div>Number of test: {{ user?.tests?.length }} </div>
+      <div><b>Role: </b>{{ user?.role }} </div>
+      <div><b>Number of dictionaries: </b>{{ user?.dictionaries?.length }} </div>
+      <div><b>Number of words learned: </b>{{ user.learnedWords }} </div>
+      <div><b>Number of test: </b>{{ user?.tests?.length }} </div>
+
+      <div class="user-assign-test">
+        <button mat-button
+                class="user-assign-test-button"
+                (click)="assignTest(user)">
+          Assign Test
+        </button>
+      </div>
     </div>
     <mat-drawer-container class="user-result">
       <mat-drawer #sidebar mode="side">
@@ -57,10 +65,10 @@
         <ng-container *ngIf="result$ | async as result">
           <div class="user-result-info">
             Detailed result: 
-            <div>Total words: {{ result?.correctWords.length + result?.incorrectWords.length }} </div>
-            <div>Correct words: {{ result?.correctWords.length }} </div>
-            <div>Incorrect words: {{ result?.incorrectWords.length }} </div>
-            <div>Result: {{ result?.result }}% </div>
+            <div><b>Total words: </b>{{ result?.correctWords.length + result?.incorrectWords.length }} </div>
+            <div><b>Correct words: </b>{{ result?.correctWords.length }} </div>
+            <div><b>Incorrect words: </b>{{ result?.incorrectWords.length }} </div>
+            <div><b>Result: </b>{{ result?.result }}% </div>
           </div>
           <div *ngIf="result?.correctWords.length"
                class="user-result-words-correct">

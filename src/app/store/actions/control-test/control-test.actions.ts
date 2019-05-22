@@ -7,6 +7,12 @@ export enum ControlTestActionTypes {
   GetControlTestsByUserId = '[ControlTest] Get Control Tests By User Id',
   GetControlTestsByUserIdSuccess = '[ControlTest] Get Control Tests By User Id Success',
   GetControlTestsByUserIdFailed = '[ControlTest] Get Control Tests By User Id Failed',
+  GetControlTestById = '[ControlTest] Get Control Tests By Id',
+  GetControlTestByIdSuccess = '[ControlTest] Get Control Tests By Id Success',
+  GetControlTestByIdFailed = '[ControlTest] Get Control Tests By Id Failed',
+  GetControlTests = '[ControlTest] Get Control Tests',
+  GetControlTestsSuccess = '[ControlTest] Get Control Tests Success',
+  GetControlTestsFailed = '[ControlTest] Get Control Tests Failed',
   GetUserControlTests = '[ControlTest] Get User Control Tests',
   GetUserControlTestsSuccess = '[ControlTest] Get User Control Tests Success',
   GetUserControlTestsFailed = '[ControlTest] Get User Control Tests Failed',
@@ -40,6 +46,33 @@ export class GetControlTestsByUserIdSuccess implements Action {
 
 export class GetControlTestsByUserIdFailed implements Action {
   public type = ControlTestActionTypes.GetControlTestsByUserIdFailed;
+}
+
+export class GetControlTestById implements Action {
+  public type = ControlTestActionTypes.GetControlTestById;
+  constructor(public payload: string) {}
+}
+
+export class GetControlTestByIdSuccess implements Action {
+  public type = ControlTestActionTypes.GetControlTestByIdSuccess;
+  constructor(public payload: any[]) {}
+}
+
+export class GetControlTestByIdFailed implements Action {
+  public type = ControlTestActionTypes.GetControlTestByIdFailed;
+}
+
+export class GetControlTests implements Action {
+  public type = ControlTestActionTypes.GetControlTests;
+}
+
+export class GetControlTestsSuccess implements Action {
+  public type = ControlTestActionTypes.GetControlTestsSuccess;
+  constructor(public payload: any[]) {}
+}
+
+export class GetControlTestsFailed implements Action {
+  public type = ControlTestActionTypes.GetControlTestsFailed;
 }
 
 export class GetUserControlTests implements Action {

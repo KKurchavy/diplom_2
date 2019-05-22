@@ -12,3 +12,13 @@ export const selectUserControlTests = createSelector(
   selectControlTests,
   ({ userControlTests }: IControlTestState) => userControlTests
 );
+
+export const getSelectedControlTest = createSelector(
+  selectControlTests,
+  ({ selectedControlTest }: IControlTestState) => selectedControlTest
+);
+
+export const getControlTests = createSelector(
+  selectControlTests,
+  ({ controlTests }: IControlTestState) => controlTests
+);

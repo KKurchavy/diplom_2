@@ -23,6 +23,14 @@ export class ControlTestService {
     return this.http.get(`${urls.controlTestApi}/${userId}`, this.options);
   }
 
+  public GetControlTestById(testId: string): Observable<HttpResponse<any>> {
+    return this.http.get(`${urls.controlTestApi}/test/${testId}`, this.options);
+  }
+
+  public getControlTests(): Observable<HttpResponse<any>> {
+    return this.http.get(`${urls.controlTestApi}/tests`, this.options);
+  }
+
   public getUserControlTests(): Observable<HttpResponse<any>> {
     return this.http.get(`${urls.controlTestApi}`, this.options);
   }
