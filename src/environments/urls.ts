@@ -5,4 +5,5 @@ export const urls = {
   authApi: `${endpoint}/auth`,
   dictionaryApi: `${endpoint}/dictionaries`,
   wordsApi: `${endpoint}/words`,
+  controlTestApi: `${endpoint}/control`
 };
