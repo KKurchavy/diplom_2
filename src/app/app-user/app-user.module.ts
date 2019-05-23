@@ -14,6 +14,7 @@ import { UserResultsComponent } from './components/user-results/user-results.com
 import { UserSidebarComponent } from './components/user-sidebar/user-sidebar.component';
 import { UserTestModule } from './components/user-test/user-test.module';
 import { testReducer } from '../store/reducers/test/test.reducer';
+import { UserControlModule } from './components/user-control/user-control.module';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { testReducer } from '../store/reducers/test/test.reducer';
     MatGridListModule,
     MatProgressSpinnerModule,
     UserTestModule,
+    UserControlModule,
     StoreModule.forFeature('test', testReducer),
   ]
 })

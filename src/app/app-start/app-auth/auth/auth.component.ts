@@ -17,10 +17,10 @@ export class AuthComponent implements OnInit {
 
   ngOnInit() {
     this.authForm = this.fb.group({
-      firstName: 'Курчавый',
-      lastName: 'Константин',
+      firstName: 'Konstantin',
+      lastName: 'Kurchavy',
       groupNumber: 45,
-      password: '',
+      password: '1111',
     });
   }
 

@@ -15,6 +15,7 @@ import {
   DeleteDictionaryFailed
 } from '../../actions/auth/auth.actions';
 import { Router } from '@angular/router';
+import { AddControlTestResult } from '../../actions/control-test/control-test.actions';
 
 
 
@@ -94,8 +95,13 @@ export class AuthEffects {
   public addTestResult$ = this.actions$.pipe(
     ofType<AddTestResult>(AuthActionTypes.AddTestResult),
     exhaustMap(({ payload }) => {
-      return this.authService.addTestResult(payload).pipe(
-        switchMap(() => [new AddTestResultSuccess(), new RefreshUserData()]),
+      return this.authService.addTestResult(payload.data).pipe(
+        switchMap(({ body }) => {
+          console.log(body);
+          return payload.controlId
+            ? [new AddTestResultSuccess(), new RefreshUserData(), new AddControlTestResult({ id: payload.controlId, result: body._id })]
+            : [new AddTestResultSuccess(), new RefreshUserData()];
+        }),
         catchError(() => of(new AddTestResultFailed()))
       );
     })

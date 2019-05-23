@@ -29,6 +29,15 @@
 
     <mat-list-item role="listitem"
                    class="sidebar-item"
+                   [routerLink]="['/user/control-tests']">
+      <button mat-button class="sidebar-button">
+        <mat-icon>timer</mat-icon>
+        Control Tests
+      </button>
+    </mat-list-item>
+
+    <mat-list-item role="listitem"
+                   class="sidebar-item"
                    [routerLink]="['/user/results']">
       <button mat-button class="sidebar-button">
         <mat-icon>history</mat-icon>

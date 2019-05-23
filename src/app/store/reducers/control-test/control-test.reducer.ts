@@ -26,7 +26,7 @@ export function controlTestReducer(state = initialControlTestState, action: any 
     case ControlTestActionTypes.GetUserControlTestsSuccess: {
       return {
         ...state,
-        controlTestByUserId: [...action.payload],
+        userControlTests: [...action.payload],
       };
     }
 

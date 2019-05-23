@@ -19,6 +19,9 @@ export enum ControlTestActionTypes {
   UpdateControlTest = '[ControlTest] Update Control Test',
   UpdateControlTestSuccess = '[ControlTest] Update Control Test Success',
   UpdateControlTestFailed = '[ControlTest] Update Control Test Failed',
+  AddControlTestResult = '[ControlTest] Add Control Test Result',
+  AddControlTestResultSuccess = '[ControlTest] Add Control Test Result Success',
+  AddControlTestResultFailed = '[ControlTest] Add Control Test Result Failed',
 }
 
 export class CreateControlTest implements Action {
@@ -99,6 +102,19 @@ export class UpdateControlTestSuccess implements Action {
 
 export class UpdateControlTestFailed implements Action {
   public type = ControlTestActionTypes.UpdateControlTestFailed;
+}
+
+export class AddControlTestResult implements Action {
+  public type = ControlTestActionTypes.AddControlTestResult;
+  constructor(public payload: any) {}
+}
+
+export class AddControlTestResultSuccess implements Action {
+  public type = ControlTestActionTypes.AddControlTestResultSuccess;
+}
+
+export class AddControlTestResultFailed implements Action {
+  public type = ControlTestActionTypes.AddControlTestResultFailed;
 }
 
 export type ControlTestActions =

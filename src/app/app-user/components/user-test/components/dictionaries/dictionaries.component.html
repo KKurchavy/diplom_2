@@ -1,6 +1,6 @@
 <div class="dictionaries-added">
   <mat-grid-list cols="6"
-                 rowHeight="150px"
+                 rowHeight="200px"
                  *ngIf="addedDictionaries$ | async as addedDictionaries; else spinner">
     <mat-grid-tile *ngFor="let dictionary of addedDictionaries"
                    [rowspan]="1"
@@ -21,7 +21,7 @@
 
 <div class="dictionaries-available">
   <mat-grid-list cols="6"
-                 rowHeight="150px"
+                 rowHeight="200px"
                  *ngIf="availableDictionaries$ | async as availableDictionaries; else spinner">
     <mat-grid-tile *ngFor="let dictionary of availableDictionaries"
                    [rowspan]="1"

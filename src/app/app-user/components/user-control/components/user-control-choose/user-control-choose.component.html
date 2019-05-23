@@ -1,0 +1,34 @@
+<div class="choose-wrapper">
+  <ng-container *ngIf="!isComplete; else beforeComplete">
+    <div class="choose-word-value">
+      <H1> {{ currentWord?.word }} </H1>
+      <h3> Choose the correct answer </h3>
+    </div>
+  
+    <div class="choose-word-list">
+      <div class="choose-word-list-item"
+           *ngFor="let word of setOfRandomWords"
+           (click)="onWordClick(word)">
+        {{ word?.translation }}
+      </div>
+    </div>
+  
+    <div class="choose-word-timer">
+      <H1> {{ timer$ | async }} </H1>
+    </div>
+  </ng-container>
+  
+  <ng-template #beforeComplete>
+    <div class="before-complete">
+      Click the complete to continue
+    </div>
+  </ng-template>
+</div>
+
+<div class="button-wrapper">
+  <button mat-button
+          (click)="onNext()"
+          class="primary-button"
+          [disabled]="!isComplete"
+          [class.primary-button-complete]="isComplete"> Next </button>
+</div>

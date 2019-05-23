@@ -1,0 +1,17 @@
+<mat-tab-group [selectedIndex]="currentTabIndex$ | async">
+  <mat-tab label="Choose a word"
+           class="choose-words">
+    <app-user-control-choose [debounceTime]="10"
+                             [words]="words$ | async"
+                             [testWords]="testWords$ | async"
+                             (next)="onNext($event)">
+    </app-user-control-choose>
+  </mat-tab>
+  <mat-tab label="Letter word"
+           class="letter-words">
+    <app-user-control-drag [testId]="testId"
+                           [correctWords]="correctWords$ | async"
+                           [incorrectWords]="incorrectWords$ | async">
+    </app-user-control-drag>
+  </mat-tab>
+</mat-tab-group>

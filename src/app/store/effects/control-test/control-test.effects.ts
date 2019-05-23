@@ -18,7 +18,10 @@ import {
   GetControlTests,
   GetControlTestByIdSuccess,
   GetControlTestsSuccess,
-  GetControlTestsFailed} from '../../actions/control-test/control-test.actions';
+  GetControlTestsFailed,
+  AddControlTestResult,
+  AddControlTestResultSuccess,
+  AddControlTestResultFailed} from '../../actions/control-test/control-test.actions';
 import { exhaustMap, map, catchError, switchMap } from 'rxjs/operators';
 import { ControlTestService } from '../../../services/control-test.service';
 
@@ -95,6 +98,18 @@ export class ControlTestEffects {
               new GetControlTestsByUserId(executor)
             ]),
             catchError(() => of(new CreateControlTestFailed()))
+          );
+      })
+    );
+
+  @Effect()
+  public addControlTestResult$ = this.actions$
+    .pipe(
+      ofType<AddControlTestResult>(ControlTestActionTypes.AddControlTestResult),
+      exhaustMap(({ payload: { id, result } }) => {
+        return this.controlTestService.updateControlTestById(id, { result, resolved: true }).pipe(
+            switchMap(() => [new AddControlTestResultSuccess(), new GetUserControlTests()]),
+            catchError(() => of(new AddControlTestResultFailed()))
           );
       })
     );

@@ -35,8 +35,7 @@
         <div>Incorrect words: {{ result?.incorrectWords.length }} </div>
         <div>Result: {{ result?.result }}% </div>
       </div>
-      <div *ngIf="result?.correctWords.length"
-           class="user-result-words-correct">
+      <div class="user-result-words-correct">
         <mat-list>
           <ng-container *ngFor="let word of result?.correctWords">
             <mat-list-item role="listitem">
@@ -47,8 +46,7 @@
           </ng-container>
         </mat-list>
       </div>
-      <div *ngIf="result?.correctWords.length"
-           class="user-result-words-incorrect">
+      <div class="user-result-words-incorrect">
         <mat-list>
           <ng-container *ngFor="let word of result?.incorrectWords">
             <mat-list-item role="listitem">
