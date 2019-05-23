@@ -13,7 +13,9 @@
   </mat-toolbar>
 
   <mat-drawer-container class="tests-drawer">
-    <mat-drawer #sidebar mode="side">
+    <mat-drawer #sidebar
+                opened
+                mode="side">
       <mat-list class="tests-list">
         <ng-container *ngFor="let test of (tests$ | async); let i = index">
           <mat-list-item role="listitem"

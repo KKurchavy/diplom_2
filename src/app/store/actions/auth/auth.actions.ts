@@ -110,16 +110,16 @@ export class UpdateUserFailed implements Action {
 }
 
 export class DeleteUser implements Action {
-  public readonly type = AuthActionTypes.UpdateUser;
+  public readonly type = AuthActionTypes.DeleteUser;
   constructor(public payload: string) {}
 }
 
 export class DeleteUserSuccess implements Action {
-  public readonly type = AuthActionTypes.UpdateUserSuccess;
+  public readonly type = AuthActionTypes.DeleteUserSuccess;
 }
 
 export class DeleteUserFailed implements Action {
-  public readonly type = AuthActionTypes.UpdateUserFailed;
+  public readonly type = AuthActionTypes.DeleteUserFailed;
 }
 
 export class LoadUsers implements Action {

@@ -17,9 +17,9 @@ export class AuthAdminComponent implements OnInit {
 
   ngOnInit() {
     this.authForm = this.fb.group({
-      firstName: 'Константин',
-      lastName: 'Курчавый',
-      password: '1111'
+      firstName: 'lingvo',
+      lastName: 'admin',
+      password: 'devvsu2019'
     })
   }
 
